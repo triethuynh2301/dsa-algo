@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Array.xUnitTests
+namespace ArrayProblems.xUnitTests
 {
     public class RotateArrayTests
     {

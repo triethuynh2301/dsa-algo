@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Array.xUnitTests
+namespace ArrayProblems.xUnitTests
 {
     public class SubarrayWithGivenSumTests
     {

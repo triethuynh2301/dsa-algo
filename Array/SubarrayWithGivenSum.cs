@@ -34,7 +34,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Array
+namespace ArrayProblems
 {
     public class SubarrayWithGivenSum
     {
@@ -104,9 +104,10 @@ namespace Array
                     return new List<int>() { subarrSum[0], subarrSum[subarrSum.Count - 1] };
                 }
             }
-                subarrSum.Clear();
-                subarrSum.Add(-1);
-                return subarrSum;
+
+            subarrSum.Clear();
+            subarrSum.Add(-1);
+            return subarrSum;
         }
     }
 }

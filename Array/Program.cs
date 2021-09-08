@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace Array
+namespace ArrayProblems
 {
     class Program
     {

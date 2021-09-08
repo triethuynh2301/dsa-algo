@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Array.Tests
+namespace ArrayProblems.Tests
 {
     [TestFixture]
     public class ArrayOperationTests
