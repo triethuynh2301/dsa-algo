@@ -138,6 +138,8 @@ namespace ArrayProblems
         public int MajorityElementMethodThree(int[] a, int size)
         {
             int halfAppearTime = size / 2;
+
+            // if there is only 1 element, then it is the major element
             if (a.Length == 1)
             {
                 return a[0];

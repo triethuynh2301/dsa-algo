@@ -8,7 +8,14 @@ namespace ArrayProblems
     {
         static void Main(string[] args)
         {
-          
+            string[] language = {"Ruby", "C", "C++", "Java",
+                             "Perl", "C#", "Python", "PHP"};
+
+            Array.ForEach(language, item =>
+            {
+                Console.WriteLine(item);
+            });
+
             Console.ReadLine();
         }
 
