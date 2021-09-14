@@ -90,13 +90,15 @@ namespace Searching
         /// to cut at or -1 if not possible</returns>
         public int FindHeightMethodTwo(int[] tree, int n, int k)
         {
-            // Sort the array so that the highest tree will be at the end.
+            // sort the array so that the highest tree will be at the end.
             // This makes finding highest tree O(logn). Otherwise, finding 
             // the max height of tree will be O(N).
             Array.Sort(tree);
             int minHeight = 0;
             int maxHeight = tree[n - 1];
 
+            // now search for the height to cut in the array [minHeight, maxHeight]
+            // which is from 0 to the height of highest tree
             while(minHeight <= maxHeight)
             {
                 int midHeight = (minHeight + maxHeight) / 2;
