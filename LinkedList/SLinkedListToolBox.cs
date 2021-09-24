@@ -9,6 +9,110 @@ namespace LinkedList
     public static class SLinkedListToolBox<T>
     {
         /// <summary>
+        /// Find the nth element starting from end of list
+        /// </summary>
+        /// <param name="n">The nth element</param>
+        /// <returns>The value of the nth element</returns>
+        public static Object FindNthElementFromEnd(SLinkedList<T> list, int n)
+        {
+            if (n > list.size)
+            {
+                return null;
+            }
+
+            // find index of the element
+            int index = list.size - n;
+            var current = list.head;
+
+            while(current != null)
+            {
+                if (index == 0)
+                {
+                    return current.data;
+                }
+                current = current.nextNode;
+                index--;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Union of 2 list
+        /// </summary>
+        /// <returns>All non-duplicates element in both list1 and list2</returns>
+        public static SLinkedList<T> Union(SLinkedList<T> list1, SLinkedList<T> list2)
+        {
+            SLinkedList<T> union = new SLinkedList<T>();
+            SLinkedList<T>.Node<T> current = null;
+
+            // if one list is empty, return the other as the union
+            if (list1.IsEmpty())
+            {
+                current = list2.head;
+                while (current != null)
+                {
+                    union.InsertAtEnd(current.data);
+                    current = current.nextNode;
+                }
+            }
+            else if (list2.IsEmpty())
+            {
+                current = list1.head;
+                while (current != null)
+                {
+                    union.InsertAtEnd(current.data);
+                    current = current.nextNode;
+                }
+            }
+            else // otherwise, join 2 lists
+            {
+                current = list1.head;
+                union.InsertAtEnd(current.data);
+
+                while (current.nextNode != null)
+                {
+                    current = current.nextNode;
+                    union.InsertAtEnd(current.data);
+                }
+
+                current = list2.head;
+                union.InsertAtEnd(current.data);
+
+                while (current.nextNode != null)
+                {
+                    current = current.nextNode;
+                    union.InsertAtEnd(current.data);
+                }
+
+                RemoveDuplicatesMethodOne(union);
+            }
+   
+            return union;
+        }
+
+        /// <summary>
+        /// Find the intersection of list
+        /// </summary>
+        /// <returns>Returns elements exist in both lists</returns>
+        public static SLinkedList<T> Intersection(SLinkedList<T> list1, SLinkedList<T> list2)
+        {
+            var intersection = new SLinkedList<T>();
+            var current = list1.head;
+
+            while(current.nextNode != null)
+            {
+                if (list2.SearchNode(current.data))
+                {
+                    intersection.InsertAtEnd(current.data);
+                }
+                current = current.nextNode;
+            }
+
+            return intersection;
+        }
+
+        /// <summary>
         /// Detect if there is a loop in the list
         /// </summary>
         /// <param name="list">List to find loop in</param>

@@ -11,6 +11,171 @@ namespace LinkedList.Tests
 {
     public class SLinkedListToolBoxTests
     {
+        #region Test FindNthElementFromEnd(SLinkedList<T> list, int n)
+        [Fact]
+        public void FindNthElementFromEnd_ValidNthElementCaseOne_ReturnsElementValue()
+        {
+            // arrange
+            var testList = new SLinkedList<int>();
+            int expected = 8;
+            testList.InsertAtEnd(15);
+            testList.InsertAtEnd(22);
+            testList.InsertAtEnd(8);
+            testList.InsertAtEnd(7);
+            testList.InsertAtEnd(14);
+            testList.InsertAtEnd(21);
+
+            // act
+            var actual = SLinkedListToolBox<int>.FindNthElementFromEnd(testList, 4);
+
+            // assert
+            Assert.Equal(expected, actual);
+
+        }
+
+        [Fact]
+        public void FindNthElementFromEnd_ValidNthElementCaseTwo_ReturnsElementValue()
+        {
+            // arrange
+            var testList = new SLinkedList<int>();
+            int expected = 47;
+            testList.InsertAtEnd(22);
+            testList.InsertAtEnd(18);
+            testList.InsertAtEnd(60);
+            testList.InsertAtEnd(78);
+            testList.InsertAtEnd(47);
+            testList.InsertAtEnd(39);
+            testList.InsertAtEnd(99);
+
+            // act
+            var actual = SLinkedListToolBox<int>.FindNthElementFromEnd(testList, 3);
+
+            // assert
+            Assert.Equal(expected, actual);
+
+        }
+
+        [Fact]
+        public void FindNthElementFromEnd_NthElementIndexOutOfRange_ReturnsNull()
+        {
+            // arrange
+            var testList = new SLinkedList<int>();
+            Object expected = null;
+            testList.InsertAtEnd(22);
+            testList.InsertAtEnd(18);
+            testList.InsertAtEnd(60);
+            testList.InsertAtEnd(78);
+            testList.InsertAtEnd(47);
+            testList.InsertAtEnd(39);
+            testList.InsertAtEnd(99);
+
+            // act
+            var actual = SLinkedListToolBox<int>.FindNthElementFromEnd(testList, 10);
+
+            // assert
+            Assert.Equal(expected, actual);
+
+        }
+        #endregion
+
+        #region Test Union(SLinkedList<T> list1, SLinkedList<T> list2)
+        [Fact]
+        public void Union_TwoListsWithDuplicates_ReturnsNonDuplicatesUnion()
+        {
+            // arrange
+            SLinkedList<int> test1 = new SLinkedList<int>();
+            SLinkedList<int> test2 = new SLinkedList<int>();
+            SLinkedList<int> actual = new SLinkedList<int>();
+            test1.InsertAtEnd(15);
+            test1.InsertAtEnd(22);
+            test1.InsertAtEnd(8);
+
+            test2.InsertAtEnd(7);
+            test2.InsertAtEnd(14);
+            test2.InsertAtEnd(22);
+
+            actual.InsertAtEnd(15);
+            actual.InsertAtEnd(22);
+            actual.InsertAtEnd(8);
+            actual.InsertAtEnd(7);
+            actual.InsertAtEnd(14);
+
+            // act
+            var expected = SLinkedListToolBox<int>.Union(test1, test2);
+
+            // assert
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Fact]
+        public void Union_OneEmptyList_ReturnsOtherList()
+        {
+            // arrange
+            SLinkedList<int> test1 = new SLinkedList<int>();
+            SLinkedList<int> test2 = new SLinkedList<int>();
+            SLinkedList<int> actual = new SLinkedList<int>();
+            test1.InsertAtEnd(15);
+            test1.InsertAtEnd(22);
+            test1.InsertAtEnd(8);
+
+            actual.InsertAtEnd(15);
+            actual.InsertAtEnd(22);
+            actual.InsertAtEnd(8);
+
+            // act
+            var expected = SLinkedListToolBox<int>.Union(test1, test2);
+
+            // assert
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+
+        #endregion
+
+        #region Test Intersection(SLinkedList<T> list1, SLinkedList<T> list2)
+        [Fact]
+        public void Intersection_ContainsCommonElements_ReturnsIntersectionList()
+        {
+            // arrange
+            SLinkedList<int> test1 = new SLinkedList<int>();
+            SLinkedList<int> test2 = new SLinkedList<int>();
+            SLinkedList<int> actual = new SLinkedList<int>();
+            test1.InsertAtEnd(15);
+            test1.InsertAtEnd(22);
+            test1.InsertAtEnd(8);
+
+            test2.InsertAtEnd(7);
+            test2.InsertAtEnd(14);
+            test2.InsertAtEnd(22);
+
+            actual.InsertAtEnd(22);
+
+            // act
+            var expected = SLinkedListToolBox<int>.Intersection(test1, test2);
+
+            // assert
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Fact]
+        public void Intersection_OneListEmpty_ReturnsEmptyList()
+        {
+            // arrange
+            SLinkedList<int> test1 = new SLinkedList<int>();
+            SLinkedList<int> test2 = new SLinkedList<int>();
+            SLinkedList<int> actual = new SLinkedList<int>();
+            test1.InsertAtEnd(15);
+            test1.InsertAtEnd(22);
+            test1.InsertAtEnd(8);
+
+            // act
+            var expected = SLinkedListToolBox<int>.Intersection(test1, test2);
+
+            // assert
+            actual.Should().BeEquivalentTo(expected);
+        }
+        #endregion
+
         #region Test DetectLoop(SLinkedList<T> list)
         [Fact]
         public void DetectLoop_CircularLoop_ReturnsTrue()
@@ -168,6 +333,5 @@ namespace LinkedList.Tests
             expected.Should().BeEquivalentTo(testList);
         }
         #endregion
-
     }
 }
